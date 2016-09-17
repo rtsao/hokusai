@@ -1,0 +1,12 @@
+{
+  "name": "hokusai",
+  "version": "1.0.0",
+  "description": "Modern static site generator",
+  "author": "Ryan Tsao <ryan.j.tsao@gmail.com>",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "license": "MIT"
+}

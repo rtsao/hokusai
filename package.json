@@ -24,7 +24,7 @@
     "inferno-dom": "1.0.0-beta3",
     "inferno-server": "1.0.0-beta3",
     "js-yaml": "^3.6.1",
-    "mdast-util-to-hast": "^1.0.0",
+    "mdast-util-to-hast": "^2.0.0",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "recursive-readdir": "^2.0.0",

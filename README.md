@@ -12,6 +12,7 @@
 
 ### Built with:
 - Webpack 2
-- Inferno
 - Babel
+- Inferno
+- Styletron
 - Remark

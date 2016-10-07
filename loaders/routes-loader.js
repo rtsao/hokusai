@@ -15,6 +15,9 @@ function routesLoader(content) {
   const callback = this.async();
   const pagesDir = this.options.pagesDir;
 
+  if (this.options.pagesEmitter) {
+  }
+
   this.addContextDependency(pagesDir);
 
   const rel = path.relative(process.cwd(), pagesDir);
@@ -25,6 +28,9 @@ function routesLoader(content) {
   }
 
   getPages(pagesDir, (err, pages) => {
+    if (this.options.pagesEmitter) {
+      this.options.pagesEmitter.emit('pages', pages);
+    }
     const squad = yolo(pages);
     const imports = squad.map(pageToImport);
     const routes = squad.map(pageToRoute);

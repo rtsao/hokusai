@@ -1,5 +1,3 @@
-import Inferno from 'inferno'
-
 export const title = 'Blog Title';
 
 export default () => (

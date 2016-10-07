@@ -3,29 +3,31 @@ const webpack = require('webpack');
 const BabiliPlugin = require('babili-webpack-plugin');
 
 const loadersDir = path.resolve(__dirname, '../loaders');
-const entry = path.resolve(__dirname, '../app/entry.js');
+const entry = path.resolve(__dirname, '../app/client-entry.js');
 
 const presetPath = require.resolve('./babel-preset');
 
+const ProvideLoaderConfigPlugin = require('../plugins/provide-loader-config');
+
 module.exports = getConfig;
 
-function getConfig(basedir, pagesDir) {
+function getConfig(basedir, pagesDir, minify = false, hot = true) {
   return {
-    entry: entry,
-    pagesDir: path.resolve(basedir, pagesDir),
+    entry: {
+      client: [entry, hot && 'webpack-dev-server/client/index.js?http://localhost:8080/'].filter(Boolean)
+    },
     output: {
       path: path.resolve(basedir, 'build'),
       publicPath: '/',
-      filename: 'bundle.js'
+      filename: '[name].bundle.js'
     },
     module: {
-      preLoaders: [
+      rules: [
         {
+          enforce: 'pre',
           test: /\.md$/,
           loader: path.join(loadersDir, 'md-loader.js')
-        }
-      ],
-      loaders: [
+        },
         {
           test: /\.(js|md)$/,
           exclude: /node_modules/,
@@ -42,11 +44,25 @@ function getConfig(basedir, pagesDir) {
         'pages-manifest-loader': path.join(loadersDir, 'pages-manifest-loader')
       }
     },
-    // devtool: 'source-map',
-    devtool: false,
+    devtool: minify ? false : 'eval-source-map',
     plugins: [
-      new webpack.EnvironmentPlugin(['NODE_ENV']),
-      new BabiliPlugin()
-    ]
+      new ProvideLoaderConfigPlugin({
+        options: {
+          [path.join(loadersDir, 'routes-loader.js')]: {
+            pagesDir: path.resolve(basedir, pagesDir),
+          },
+          [path.join(loadersDir, 'pages-manifest-loader.js')]: {
+            pagesDir: path.resolve(basedir, pagesDir),
+          }
+        }
+      }),
+      minify && new webpack.EnvironmentPlugin(['NODE_ENV']),
+      minify && new BabiliPlugin(),
+      new webpack.ProvidePlugin({
+        Inferno: require.resolve('inferno'),
+        Styletron: require.resolve('styletron-utils')
+      })
+    ].filter(Boolean)
   };
 }
+

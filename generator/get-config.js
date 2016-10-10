@@ -11,10 +11,12 @@ const ProvideLoaderConfigPlugin = require('../plugins/provide-loader-config');
 
 module.exports = getConfig;
 
+const devClient = require.resolve('webpack-dev-server/client');
+
 function getConfig(basedir, pagesDir, minify = false, hot = true) {
   return {
     entry: {
-      client: [entry, hot && 'webpack-dev-server/client/index.js?http://localhost:8080/'].filter(Boolean)
+      client: [entry, hot && `${devClient}?http://localhost:8080/`].filter(Boolean)
     },
     output: {
       path: path.resolve(basedir, 'build'),
@@ -34,7 +36,7 @@ function getConfig(basedir, pagesDir, minify = false, hot = true) {
         {
           test: /\.(js|md)$/,
           exclude: /node_modules/,
-          loader: 'babel',
+          loader: require.resolve('babel-loader'),
           query: {
             presets: [presetPath],
           }

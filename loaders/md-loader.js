@@ -9,60 +9,47 @@ module.exports = markdownLoader;
 
 function markdownLoader(source) {
   this.cacheable();
+  const cb = this.async();
   const {hast, frontmatter} = mdToHast(source);
-
-  let elementMap;
   if (frontmatter.dom) {
     const domPath = path.resolve(this.context, frontmatter.dom);
     this.addDependency(domPath); // make this better? should this be absolute?
-    let stuff;
-    try {
-      stuff = fs.readFileSync(domPath, 'utf8');
-    } catch (e) {
-
-    }
-    if (stuff) {
-      elementMap = createElementMap(getExports(stuff));
-      visit(hast, 'element', function(node) {
-        if (elementMap.has(node.tagName)) {
-          node.tagName = elementMap.get(node.tagName);
-        }
-      });
-    }
+    fs.readFile(domPath, 'utf8', (err, content) => {
+      if (err) {
+        return cb(err);
+      }
+      const elementMap = createElementMap(getExports(content));
+      return cb(null, generateSource(hast, frontmatter, elementMap));
+    });
+  } else {
+    return cb(null, generateSource(hast, frontmatter));
   }
+}
 
-
-  let yoyo = '';
-  if (elementMap) {
-    const woot = [];
-    for (let [key, value] of elementMap) {
-      woot.push(`${key} as ${value}`);
-    }
-    yoyo = `import {${woot.join(', ')}} from '${frontmatter.dom}';`;
-    // console.log(elementMap.entries());
-    // elementMap.entries().forEach(([a, b]) => {
-    //   console.log('zz', a, b);
-    // });
-  }
-
+function generateSource(hast, frontmatter, elementMap) {
   const jsx = hastToJsx(hast, {elementMap});
-
-  console.log(yoyo);
   return `
 
-  import Inferno from 'inferno';
+  
 
-  ${yoyo}
+    ${elementMap ? importString(elementMap, frontmatter.dom) : ''}
 
-  ${frontmatterExports(frontmatter)}
+    ${frontmatterExports(frontmatter)}
 
-  export default (\n<div>${jsx}</div>\n);
+    export default (\n<div>${jsx}</div>\n);
 
-`;
+  `;
+}
+
+function importString(elementMap, source) {
+  const imports = [];
+  for (let [key, value] of elementMap) {
+    imports.push(`${key} as ${value}`);
+  }
+  return `import {${imports.join(', ')}} from '${source}';`;
 }
 
 function createElementMap(names) {
-  console.log(names);
   return new Map(
     Array.from(names.entries())
       .map(([a, b], i) => [a, `${a.toUpperCase()}`])

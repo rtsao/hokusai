@@ -1,7 +1,7 @@
 const path = require('path');
 const loadersDir = path.resolve(__dirname, '../loaders');
 
-class Plugintron {
+class ProvideLoaderConfigPlugin {
   constructor(options) {
     if (typeof options !== 'object') {
       options = {};
@@ -26,4 +26,4 @@ class Plugintron {
   }
 }
 
-module.exports = Plugintron;
+module.exports = ProvideLoaderConfigPlugin;

@@ -1,5 +1,3 @@
-import Component from 'inferno-component';
-
 export default class StyletronProvider extends Component {
   constructor(props, context) {
     super(props, context);

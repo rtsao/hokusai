@@ -6,7 +6,7 @@ dom: ./_components.js
 
 ## Hello World
 
-Hello world.
+Hello world
 
 Here is a footnote reference,[^1]
 

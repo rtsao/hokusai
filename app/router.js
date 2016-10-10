@@ -1,5 +1,3 @@
-import Component from 'inferno-component';
-
 /**
  * Possibly eliminate w/ server-side rewrites
  */

@@ -4,14 +4,14 @@ const ext = /\.(md|js)$/;
 const index = /\/index$/;
 const trailing = /\/$/;
 
-module.exports = transformPages;
+module.exports = pageInfoFromFilenames;
 
-function transformPages(pages) {
-  const normalized = sortAndNormalize(pages);
-  const info = normalized.reduce((acc, {pathname, key}, i) => {
+function pageInfoFromFilenames(filenames) {
+  const normalizedNames = sortAndNormalize(filenames);
+  const info = normalizedNames.reduce((acc, {pathname, key}, i) => {
     let isTrueIndex = false;
-    for (let j = i + 1; j < normalized.length; j++) {
-      if (normalized[j].pathname.substring(0, pathname.length) === pathname) {
+    for (let j = i + 1; j < normalizedNames.length; j++) {
+      if (normalizedNames[j].pathname.substring(0, pathname.length) === pathname) {
         isTrueIndex = true;
         break;
       }
@@ -19,11 +19,6 @@ function transformPages(pages) {
 
     if (isTrueIndex) {
       const indexPath = pathname.replace(trailing, '/index')
-      // return {
-      //   entry: key,
-      //   pathname: pathname,
-      //   dest: `.${indexPath}.html`
-      // }
       acc[pathname] = {
         entry: key,
         dest: `.${indexPath}.html`
@@ -37,11 +32,6 @@ function transformPages(pages) {
       dest: `.${shortPath}.html`
     };
     return acc;
-    // return {
-    //   entry: key,
-    //   pathname: shortPath,
-    //   dest: `.${shortPath}.html`
-    // }
   }, {});
 
   return info;

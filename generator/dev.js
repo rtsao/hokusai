@@ -23,6 +23,7 @@ let state = false;
 let compiledServer = null;
 let pageCache = {};
 let requests = [];
+let hokusaiConfig = {};
 
 let pages = null;
 
@@ -53,12 +54,19 @@ function render(pathname) {
   const {App, Markup, pagesManifest} = compiledServer;
   // console.log(pagesManifest);
   const yo = pagesManifest[pathname];
-  const props = Object.assign({}, yo.title && {title:yo.title});
-  // console.log('dang', App, Markup);
+  const props = Object.assign({}, yo.title && {title:yo.title}, hokusaiConfig);
   return serverRender(pathname, Markup, App, props);
 }
 
 module.exports = function dev(basedir, pagesdir) {
+
+  const hokusaiConfigPath = path.join(basedir, 'hokusai.json');
+  try {
+    hokusaiConfig = require(hokusaiConfigPath);
+  } catch (e) {
+    // no config
+  }
+  
 
   const config = getConfig(basedir, pagesdir);
   config.entry.server = entry2;

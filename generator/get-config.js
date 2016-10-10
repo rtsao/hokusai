@@ -21,6 +21,9 @@ function getConfig(basedir, pagesDir, minify = false, hot = true) {
       publicPath: '/',
       filename: '[name].bundle.js'
     },
+    resolve: {
+      modules: ['node_modules', path.resolve('../node_modules')]
+    },
     module: {
       rules: [
         {
@@ -60,7 +63,10 @@ function getConfig(basedir, pagesDir, minify = false, hot = true) {
       minify && new BabiliPlugin(),
       new webpack.ProvidePlugin({
         Inferno: require.resolve('inferno'),
-        Styletron: require.resolve('styletron-utils')
+        Styletron: require.resolve('styletron-utils'),
+        StyletronClient: require.resolve('styletron-client'),
+        Component: require.resolve('inferno-component'),
+        InfernoDOM: require.resolve('inferno-dom')
       })
     ].filter(Boolean)
   };

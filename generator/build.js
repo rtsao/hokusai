@@ -12,6 +12,7 @@ const entry2 = path.resolve(__dirname, '../app/server-entry.js');
 
 const getConfig = require('./get-config');
 
+let hokusaiConfig;
 let compiledServer;
 
 function render(pathname) {
@@ -22,6 +23,14 @@ function render(pathname) {
 }
 
 module.exports = function build(basedir, pagesdir) {
+
+  const hokusaiConfigPath = path.join(basedir, 'hokusai.json');
+  try {
+    hokusaiConfig = require(hokusaiConfigPath);
+  } catch (e) {
+    // no config
+  }
+
   const config = getConfig(basedir, pagesdir, true, false);
   config.entry.server = entry2;
   const compiler = webpack(config);

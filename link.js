@@ -6,5 +6,5 @@ export default function Link(props, context) {
     e.preventDefault();
     context.routeTo(props.to);
   }
-  return <a href={props.to} onClick={clickHandler}>{props.children}</a>;
+  return <a href={props.to} class={props.className} onClick={clickHandler}>{props.children}</a>;
 }

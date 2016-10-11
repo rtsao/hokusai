@@ -28,6 +28,9 @@ function markdownLoader(source) {
 
 function generateSource(hast, frontmatter, elementMap) {
   const jsx = hastToJsx(hast, {elementMap});
+
+  const contentString = `<div>${jsx}</div>`;
+  const allContent = frontmatter.container ? `<Container>${contentString}</Container>` : contentString;
   return `
 
   
@@ -36,7 +39,9 @@ function generateSource(hast, frontmatter, elementMap) {
 
     ${frontmatterExports(frontmatter)}
 
-    export default (\n<div>${jsx}</div>\n);
+    ${frontmatter.container ? `import Container from '${frontmatter.container}';` : ''}
+
+    export default (\n${allContent}\n);
 
   `;
 }

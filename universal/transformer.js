@@ -27,7 +27,7 @@ function pageInfoFromFilenames(filenames) {
     }
 
     const shortPath = pathname.replace(trailing, '');
-    acc[pathname] = {
+    acc[shortPath] = {
       entry: key,
       dest: `.${shortPath}.html`
     };

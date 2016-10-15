@@ -21,7 +21,8 @@ export default class StaticRouter extends Component {
 
   getChildContext() {
     return {
-      routeTo: this.routeTo
+      routeTo: this.routeTo,
+      currentRoute: this.state.pathname
     };
   }
 

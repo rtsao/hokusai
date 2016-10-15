@@ -10,5 +10,5 @@ function render(pathname, Markup, App, props) {
   const appContent = InfernoServer.renderToString(createElement(App, {pathname, styletron}));
   const styletronSheets = styletron.getStylesheets();
   const markupProps = Object.assign({}, props, {appContent, styletronSheets});
-  return InfernoServer.renderToStaticMarkup(createElement(Markup, markupProps));
+  return '<!doctype html>' + InfernoServer.renderToStaticMarkup(createElement(Markup, markupProps));
 }

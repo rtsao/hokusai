@@ -6,5 +6,8 @@ export default function Link(props, context) {
     e.preventDefault();
     context.routeTo(props.to);
   }
-  return <a href={props.to} class={props.className} onClick={clickHandler}>{props.children}</a>;
+  const activeStyles = props.activeStyles || props.styles;
+  const styles = context.currentRoute === props.to ? activeStyles : props.styles;
+  const styletron = context.styletron;
+  return <a style={styles} href={props.to} onClick={clickHandler}>{props.children}</a>;
 }

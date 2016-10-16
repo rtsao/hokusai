@@ -36,7 +36,8 @@ function getConfig(basedir, pagesDir, minify = false, hot = true) {
         },
         {
           test: /\.(js|md)$/,
-          exclude: /node_modules/,
+          include: [basedir, path.resolve(__dirname, '..')],
+          exclude: /node_modules\/(!hokusai)/,
           loader: require.resolve('babel-loader'),
           query: {
             presets: [presetPath],

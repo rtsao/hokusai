@@ -24,7 +24,8 @@ function getConfig(basedir, pagesDir, minify = false, hot = true) {
       filename: '[name].bundle.js'
     },
     resolve: {
-      modules: ['node_modules', path.resolve('../node_modules')]
+      modules: ['node_modules', path.resolve('../node_modules')],
+      extensions: ['.js', '.md']
     },
     module: {
       rules: [
@@ -46,7 +47,8 @@ function getConfig(basedir, pagesDir, minify = false, hot = true) {
     resolveLoader: {
       alias: {
         'routes-loader': path.join(loadersDir, 'routes-loader'),
-        'pages-manifest-loader': path.join(loadersDir, 'pages-manifest-loader')
+        'pages-manifest-loader': path.join(loadersDir, 'pages-manifest-loader'),
+        'toc-loader': path.join(loadersDir, 'toc-loader')
       }
     },
     devtool: minify ? false : 'eval-source-map',
@@ -57,6 +59,9 @@ function getConfig(basedir, pagesDir, minify = false, hot = true) {
             pagesDir: path.resolve(basedir, pagesDir),
           },
           [path.join(loadersDir, 'pages-manifest-loader.js')]: {
+            pagesDir: path.resolve(basedir, pagesDir),
+          },
+          [path.join(loadersDir, 'toc-loader.js')]: {
             pagesDir: path.resolve(basedir, pagesDir),
           }
         }

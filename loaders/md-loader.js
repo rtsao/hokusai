@@ -30,10 +30,11 @@ function generateSource(hast, frontmatter, elementMap) {
   const jsx = hastToJsx(hast, {elementMap});
 
   const contentString = `<div>${jsx}</div>`;
-  const allContent = frontmatter.container ? `<Container>${contentString}</Container>` : contentString;
+  const props = Object.keys(frontmatter).map(key =>
+    `${key}={${JSON.stringify(frontmatter[key])}}`
+  );
+  const allContent = frontmatter.container ? `<Container ${props.join(' ')}>${contentString}</Container>` : contentString;
   return `
-
-  
 
     ${elementMap ? importString(elementMap, frontmatter.dom) : ''}
 

@@ -39,15 +39,24 @@ export default class StaticRouter extends Component {
   }
 
   handlePopState() {
-    this.setState({pathname: window.location.pathname});
+    this.setRoute(window.location.pathname)
   }
 
   routeTo(pathname) {
     if (pathname !== this.state.pathname) {
-      const {title} = this.props.routes[pathname];
+      this.setRoute(pathname, true);
+    }
+  }
+
+  setRoute(pathname, pushState) {
+    const {title} = this.props.routes[pathname];
+    if (pushState) {
       window.history.pushState({}, title, pathname);
-      document.title = title;
-      this.setState({pathname});
+    }
+    document.title = title;
+    this.setState({pathname});
+    if (window.ga) {
+      window.ga('send', 'pageview');
     }
   }
 

@@ -39,7 +39,7 @@ export default class StaticRouter extends Component {
   }
 
   handlePopState() {
-    this.setState({pathname: window.location});
+    this.setState({pathname: window.location.pathname});
   }
 
   routeTo(pathname) {

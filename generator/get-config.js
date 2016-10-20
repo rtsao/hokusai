@@ -73,8 +73,7 @@ function getConfig(basedir, pagesDir, minify = false, hot = true) {
         Inferno: require.resolve('inferno'),
         Styletron: require.resolve('styletron-utils'),
         StyletronClient: require.resolve('styletron-client'),
-        Component: require.resolve('inferno-component'),
-        InfernoDOM: require.resolve('inferno-dom')
+        Component: require.resolve('inferno-component')
       })
     ].filter(Boolean)
   };

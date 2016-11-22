@@ -34,7 +34,7 @@
     "remark-textr": "^2.0.3",
     "styletron-client": "^2.0.0",
     "styletron-server": "^2.0.0",
-    "styletron-utils": "^2.0.0",
+    "styletron-utils": "^2.0.5",
     "typographic-base": "^1.0.4",
     "unified": "^5.0.0",
     "unist-util-visit": "^1.1.0",

@@ -33,7 +33,7 @@
     "remark-parse": "^2.2.0",
     "remark-textr": "^2.0.3",
     "styletron-client": "^2.0.0",
-    "styletron-server": "^2.0.0",
+    "styletron-server": "^2.1.1",
     "styletron-utils": "^2.0.0",
     "typographic-base": "^1.0.4",
     "unified": "^5.0.0",

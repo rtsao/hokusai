@@ -1,6 +1,6 @@
 {
   "name": "hokusai",
-  "version": "1.0.0-alpha.10",
+  "version": "1.0.0-alpha.11",
   "description": "Modern static site generator",
   "author": "Ryan Tsao <ryan.j.tsao@gmail.com>",
   "main": "index.js",

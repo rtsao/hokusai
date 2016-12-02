@@ -42,6 +42,11 @@ function getConfig(basedir, pagesDir, minify = false, hot = true) {
           query: {
             presets: [presetPath],
           }
+        },
+        {
+          test: /\.(svg|png|jpg)$/,
+          include: [basedir, path.resolve(__dirname, '..')],
+          loader: require.resolve('file-loader')
         }
       ]
     },

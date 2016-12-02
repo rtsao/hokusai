@@ -1,3 +1,4 @@
+const path = require('path');
 const unified = require('unified');
 const htmlParse = require('rehype-parse');
 const visit = require('unist-util-visit');
@@ -9,13 +10,25 @@ const htmlParser = unified()
 module.exports = hastToJsx;
 
 function hastToJsx(hast, opts) {
+  hast = loadRelativeImages(hast);
   if (opts.elementMap) {
     hast = remapHast(hast, opts.elementMap);
   }
   hast = replaceRawComments(hast);
   return toHTML(hast, {
-    closeSelfClosing: true
+    closeSelfClosing: true,
+    allowDangerousHTML: true
   });
+}
+
+function loadRelativeImages(hast) {
+  visit(hast, 'element', node => {
+    if (node.tagName === 'img' && node.properties.src && !path.isAbsolute(node.properties.src)) {
+      node.type = 'raw';
+      node.value = `<img src={require('${node.properties.src}')}/>`;
+    }
+  });
+  return hast;
 }
 
 function remapHast(hast, elementMap) {

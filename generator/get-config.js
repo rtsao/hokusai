@@ -15,6 +15,7 @@ const devClient = require.resolve('webpack-dev-server/client');
 
 function getConfig(basedir, pagesDir, minify = false, hot = true) {
   return {
+    performance: false, // TODO figure out why this has to be disabled?
     entry: {
       client: [entry, hot && `${devClient}?http://localhost:8080/`].filter(Boolean)
     },

@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "babel-loader": "^6.2.5",
-    "babel-plugin-inferno": "^1.2.0-beta17",
+    "babel-plugin-inferno": "^1.5.0",
     "babel-plugin-styletron": "^2.0.2-beta.3",
     "babel-plugin-syntax-jsx": "^6.13.0",
     "babel-plugin-transform-object-rest-spread": "^6.19.0",
@@ -21,10 +21,10 @@
     "babylon": "^6.11.2",
     "file-loader": "^0.9.0",
     "hast-util-to-html": "^3.0.0",
-    "inferno": "1.0.0-beta45",
-    "inferno-component": "1.0.0-beta40",
-    "inferno-create-element": "1.0.0-beta40",
-    "inferno-server": "1.0.0-beta45",
+    "inferno": "1.1.0",
+    "inferno-component": "1.1.0",
+    "inferno-create-element": "1.1.0",
+    "inferno-server": "1.1.0",
     "js-yaml": "^3.6.1",
     "mdast-util-to-hast": "^2.0.0",
     "minimist": "^1.2.0",
@@ -39,7 +39,7 @@
     "typographic-base": "^1.0.4",
     "unified": "^5.0.0",
     "unist-util-visit": "^1.1.0",
-    "webpack": "^2.2.0-rc.2",
+    "webpack": "^2.2.0-rc.3",
     "webpack-dev-server": "^2.2.0-rc.0"
   },
   "license": "MIT"

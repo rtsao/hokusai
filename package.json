@@ -10,7 +10,7 @@
     "test-watch": "node bin/cli.js --basedir=./fixtures/simple --pagesdir=./pages --watch"
   },
   "dependencies": {
-    "babel-loader": "^6.2.5",
+    "babel-loader": "^6.3.0",
     "babel-plugin-inferno": "^1.5.0",
     "babel-plugin-styletron": "^2.0.2-beta.3",
     "babel-plugin-syntax-jsx": "^6.13.0",

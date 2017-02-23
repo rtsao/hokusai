@@ -30,7 +30,7 @@
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "recursive-readdir": "^2.0.0",
-    "rehype-parse": "^2.0.0",
+    "rehype-parse": "^3.0.0",
     "remark-parse": "^2.2.0",
     "remark-textr": "^2.0.3",
     "styletron-client": "^2.0.0",

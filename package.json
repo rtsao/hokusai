@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "babel-loader": "^6.2.5",
-    "babel-plugin-inferno": "^1.5.0",
+    "babel-plugin-inferno": "^3.1.0",
     "babel-plugin-styletron": "^2.0.2-beta.3",
     "babel-plugin-syntax-jsx": "^6.13.0",
     "babel-plugin-transform-object-rest-spread": "^6.19.0",

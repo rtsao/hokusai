@@ -24,7 +24,7 @@
     "inferno": "1.1.0",
     "inferno-component": "1.1.0",
     "inferno-create-element": "1.1.0",
-    "inferno-server": "1.1.0",
+    "inferno-server": "3.2.1",
     "js-yaml": "^3.6.1",
     "mdast-util-to-hast": "^2.0.0",
     "minimist": "^1.2.0",

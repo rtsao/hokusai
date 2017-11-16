@@ -37,7 +37,7 @@
     "styletron-server": "^2.0.0",
     "styletron-utils": "^2.0.0",
     "typographic-base": "^1.0.4",
-    "unified": "^5.0.0",
+    "unified": "^6.1.6",
     "unist-util-visit": "^1.1.0",
     "webpack": "^2.2.0-rc.4",
     "webpack-dev-server": "^2.2.0-rc.0"

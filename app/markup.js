@@ -9,12 +9,9 @@ export default ({children, links, typekitKey, title, gaKey, appContent, styletro
     sheet.css
   }}/>
   )}
-  {typekitKey ? <script src={
-    `https://use.typekit.net/${typekitKey}.js`
+  {typekitKey ? <link rel="stylesheet" href={
+    `https://use.typekit.net/${typekitKey}.css`
   }/> : ''}
-  {typekitKey ? <script dangerouslySetInnerHTML={{__html:
-    'try{Typekit.load({async:true});}catch(e){}'
-  }}/> : ''}
   {links ? links.map(attrs => <link {...attrs}/>) : ''}
   </head>
   <body>
